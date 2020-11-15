@@ -28,7 +28,7 @@
           $result = $conn->query($sql);
           if($result){
 
-            $_SESSION['message'] = "Event Type Updated successfully!";  
+            $_SESSION['success_message'] = "Event Type Updated successfully!";  
 
             $funObj->redirect('list_event_types.php');
         }  

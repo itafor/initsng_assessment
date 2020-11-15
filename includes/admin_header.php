@@ -25,11 +25,6 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-
-<link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
-
- 
-     
 </head>
 
 <body class="">
@@ -60,7 +55,7 @@
             </a>
           </li>
           <li>
-            <a href="create_event.php">
+            <a href="list_events.php">
               <i class="now-ui-icons location_map-big"></i>
               <p>Events</p>
             </a>
@@ -142,16 +137,30 @@
       <div class="panel-header panel-header-sm">
       </div>
  <div class="container">
-<?php if (isset($_SESSION['message'])): ?>
+<?php if (isset($_SESSION['success_message'])): ?>
  
     <?php 
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success! </strong>' .$_SESSION['message'].'
+  <strong>Success! </strong>' .$_SESSION['success_message'].'
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>';
-      unset($_SESSION['message']);
+      unset($_SESSION['success_message']);
+    ?>
+ 
+<?php endif ?>.
+
+<?php if (isset($_SESSION['error_message'])): ?>
+ 
+    <?php 
+    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Success! </strong>' .$_SESSION['error_message'].'
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+      unset($_SESSION['error_message']);
     ?>
  
 <?php endif ?>.

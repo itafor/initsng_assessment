@@ -13,7 +13,7 @@ class EventType
 	 public function createEventType($name, $description){ 
      $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE); 
           if (empty($name)) {
-                    echo "<script>alert('Name cannot be empty')</script>";
+              $_SESSION['error_message'] = "Name cannot be empty!"; 
                     return false;  
           }
                 $sql = "INSERT INTO event_types(name, description)
