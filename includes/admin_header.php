@@ -20,8 +20,12 @@
   <link href="admin_dashboard_assets/demo/demo.css" rel="stylesheet" />
 
   <link href="admin_dashboard_assets/admin_custom.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
 <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
 
  
@@ -50,21 +54,21 @@
           </li>
         
           <li>
-            <a href="#">
+            <a href="list_event_types.php">
               <i class="now-ui-icons education_atom"></i>
-              <p>Logistic Agents</p>
+              <p>Event Types</p>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="create_event.php">
               <i class="now-ui-icons location_map-big"></i>
-              <p>Products and Services</p>
+              <p>Events</p>
             </a>
           </li>
           <li>
             <a href="./notifications.html">
               <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Notifications</p>
+              <p>Event Applications</p>
             </a>
           </li>
           
@@ -137,5 +141,18 @@
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
-
-     
+ <div class="container">
+<?php if (isset($_SESSION['message'])): ?>
+ 
+    <?php 
+    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success! </strong>' .$_SESSION['message'].'
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>';
+      unset($_SESSION['message']);
+    ?>
+ 
+<?php endif ?>.
+</div>

@@ -21,9 +21,7 @@
     }  
   
 ?>
-
-
-        <div class="container">  
+      <div class="container">  
             <header>  
                 <h1>Login Form  </h1>  
             </header> 

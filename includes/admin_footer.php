@@ -44,4 +44,11 @@
   <script src="admin_dashboard_assets/demo/demo.js"></script>
   <script src="admin_dashboard_assets/admin_custom.js"></script>
            
-   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#data_table').DataTable();
+} );
+
+</script>

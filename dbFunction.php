@@ -4,32 +4,34 @@ require_once('config/constants.php');
 session_start();  
     class dbFunction {  
             
-        function __construct() {  
-              
-            // connecting to database  
-            $db = new dbConnect();;  
-               
-        }  
-        // destructor  
-        function __destruct() {  
-              
-        }  
+     
         public function UserRegister($emailid, $password,$first_name,$last_name,$phone){ 
-          $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
+          $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
 
                 $password = md5($password);  
-                $qr = mysqli_query($conn,"INSERT INTO users(emailid, password, first_name,last_name,phone) values('".$emailid."','".$password."','".$first_name."','".$last_name."','".$phone."')") or die(mysqli_error($conn));  
-                return $qr;  
+               
+                $sql = "INSERT INTO users(emailid, password, first_name,last_name,phone)
+                       values('".$emailid."','".$password."','".$first_name."','".$last_name."','".$phone."')";
+                
+                if($conn->query($sql) === true){
+                    return true;
+                   }else {
+                  echo "Error: " . $sql . "<br>" . $conn->error;
+            }  
                
         }  
+
+
         public function Login($emailid, $password){  
-          $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
+          $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
                 $user_password = md5($password);  
-            $res = mysqli_query($conn,"SELECT * FROM users WHERE emailid ='$emailid'  AND password ='$user_password'  ");  
-            $user_data = mysqli_fetch_array($res);  
-             // print_r($user_data); 
-             // exit; 
-            $no_rows = mysqli_num_rows($res);  
+            $sql = "SELECT * FROM users WHERE emailid ='$emailid'  AND password ='$user_password' "; 
+            $result = $conn->query($sql);
+
+            if ($result->num_rows >=1) {
+             $user_data = mysqli_fetch_array($result);  
+            
+            $no_rows = mysqli_num_rows($result);  
               
             if ($no_rows == 1)   
             {  
@@ -45,13 +47,18 @@ session_start();
             else  
             {  
                 return FALSE;  
-            }  
+            }
+             } 
+                return FALSE;  
+
+
         }  
         public function isUserExist($emailid){ 
-          $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
-            $qr = mysqli_query($conn,"SELECT * FROM users WHERE emailid = '".$emailid."'");  
-            // $row = mysqli_num_rows($qr);  
-            if(!$qr){  
+          $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
+            $sql ="SELECT * FROM users WHERE emailid = '".$emailid."'"; 
+             $result = $conn->query($sql);
+
+            if($result->num_rows >=1){  
                 return true;  
             } else {  
                 return false;  
@@ -60,12 +67,12 @@ session_start();
 
         public function authUser()
         {
-          $conn = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
+          $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
 
-            $user = mysqli_query($conn,"SELECT * FROM users where emailid='".$_SESSION['email']."' ");
-               $user_data = mysqli_fetch_array($user);  
-               $no_rows = mysqli_num_rows($user); 
-            if($no_rows == 1){
+            $user ="SELECT * FROM users where emailid='".$_SESSION['email']."' ";
+            $result= $conn->query($user);
+            if($result->num_rows >= 1){
+               $user_data = mysqli_fetch_array($result);  
                 return $user_data;
             }else{
                 return false;
@@ -78,5 +85,17 @@ session_start();
     ob_end_flush();
     die();
 }
+
+public function isAdmin()
+{
+  if(!($_SESSION)){  
+        header("Location:index.php");  
     }  
+
+     if ($this->authUser()['user_type'] !='Admin') {
+        $this->redirect("index.php"); 
+    } 
+} 
+
+}
 ?>

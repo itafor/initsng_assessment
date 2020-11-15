@@ -71,84 +71,8 @@ function duplicateEmail(element){
         }
     });
 }
-// #e14eca
-// check the db if the username has been used before submitting
-function duplicateUserName(element){
-    var username = $(element).val();
-    $.ajax({
-        type: "GET",
-        url: baseUrl+"/checkusername",
-        data: {username:username},
-        dataType: "json",
-        success: function(res) {
-            if(res.exists){
-                alert('Username taken, Choose another');
-                $('#finish').prop('disabled', true);
-                $(":input").not("[name=username]").prop("readonly", true)
-            } else {
-                $(":input").not("[name=username]").prop("readonly", false)
-                $('#finish').prop('disabled', false)
-            }
-        },
-        error: function (jqXHR, exception) {
-
-        }
-    });
-}
 
 
-$('.individual').hide();
-$('.corporate').hide();
-
-$('input:radio[name="user_type"]').click(function(){
-    if ($(this).val() == '1'){
-        $('.individual').show();
-        $(".individual :input").attr("disabled", false);
-        $('.corporate').hide();
-        $(".corporate :input").attr("disabled", true);
-
-
-    }
-    if ($(this).val() == '2')
-    {
-        $('.corporate').show();
-        $(".corporate :input").attr("disabled", false);
-        $('.individual').hide();
-        $(".individual :input").attr("disabled", true);
-
-    }
-})
-
-// make rows clickable
-$(".clickable-row").click(function() {
-    window.location = $(this).data("href");
-});
-
-$(document).ready( function () {
-    $('#requests').DataTable();
-} );
-
-// $('#finish').click(function() {
-//     if (!$('.select_corporate') || !$('.select_individual')) {
-//         alert('Please pick a user type')
-//     }
-// })
-
-function disableButton() 
-{
-    $('#email').prop('disabled', true);
-}
-
-//sticky header
-$(window).scroll(function() {    
-    var scroll = $(window).scrollTop();
-
-    if (scroll >= 200) {
-        $("#topHeader").addClass("sticky-header");
-    } else {
-        $("#topHeader").removeClass("sticky-header");
-    }
-});
 
 function deleteItems(item,item_id)
 {
@@ -186,15 +110,3 @@ function deleteItems(item,item_id)
 })
 }
 
-        function myFunction(imgs) {
-  // Get the expanded image
-  var expandImg = document.getElementById("expandedImg");
-  // Get the image text
-  var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
-  imgText.innerHTML = imgs.alt;
-  // Show the container element (hidden with CSS)
-  expandImg.parentElement.style.display = "block";
-}
