@@ -1,6 +1,4 @@
 <?php   
-   
-
     include_once('dbFunction.php');
 
      $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);  
@@ -12,13 +10,12 @@
 include ('includes/admin_header.php');
 
 
-      if (isset($_GET['del'])) {
-      $id = $_GET['del'];
-      $sql="DELETE FROM event_types WHERE id='$id'";
+      if (isset($_GET['destrol'])) {
+      $id = $_GET['destrol'];
+      $sql="DELETE FROM events WHERE id='$id'";
       $result = $conn->query($sql);
       if($result){
-      $_SESSION['message'] = "Event Type deleted successfully!"; 
-
+      $_SESSION['success_message'] = "Event deleted successfully!"; 
       }
     }
 ?>  
@@ -62,12 +59,12 @@ include ('includes/admin_header.php');
                                         echo "<td>" . $row['venue'] . "</td>";
                                         echo "<td>" . $row['description'] . "</td>";
                                         echo "<td>";
-                                            echo "<a class='text-success' href='view_event_type.php?et_id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><i class='fas fa-eye'></i></a>";
+                                            echo "<a class='text-success' href='view_event.php?event_id=". $row['id'] ."' title='View Record' data-toggle='tooltip'><i class='fas fa-eye'></i></a>";
                                             echo "&nbsp;&nbsp;&nbsp;&nbsp;";
 
-                                            echo "<a class='text-info' href='update_event_type.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fas fa-edit'></i></a>";
+                                            echo "<a class='text-info' href='update_event.php?id=". $row['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fas fa-edit'></i></a>";
                                             echo "&nbsp;&nbsp;&nbsp;&nbsp;";
-                                            echo "<a class='text-danger' href='list_event_types.php?del=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fas fa-trash'></i></a>";
+                                            echo "<a class='text-danger' href='list_events.php?destrol=". $row['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fas fa-trash'></i></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                     $index++;

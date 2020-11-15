@@ -97,5 +97,24 @@ public function isAdmin()
     } 
 } 
 
+public function associatedEventTypes($eventId){
+    $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE); 
+        $sql = "SELECT * FROM get_event_types where event_id ='$eventId'";
+               $result = $conn->query($sql);
+
+      return $result;
+}
+
+public function fetchEventTypeValue($eventTypeId)
+{
+   $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE); 
+        $sql = "SELECT * FROM event_types where id ='$eventTypeId'";
+               $result = $conn->query($sql);
+
+          $data =   mysqli_fetch_array($result);
+
+      return $data;
+}
+
 }
 ?>

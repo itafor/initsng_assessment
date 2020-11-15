@@ -15,6 +15,8 @@ include ('includes/admin_header.php');
       if (isset($_GET['et_id'])) {
       $id = $_GET['et_id'];
     }
+
+  
 ?>  
 
 <div class="card">
