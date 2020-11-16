@@ -1,6 +1,8 @@
 <?php  
 require_once 'dbConnect.php';  
 require_once('config/constants.php'); 
+    $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE);    
+
 session_start();  
     class dbFunction {  
             

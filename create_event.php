@@ -21,8 +21,17 @@
       $name = $_POST['name'];  
       $venue = $_POST['venue'];  
       $description = $_POST['description'];  
+       
+      $image = addslashes(file_get_contents($_FILES['fileToUpload']['tmp_name'])); //SQL Injection defence!
+      $image_name = addslashes($_FILES['fileToUpload']['name']);
+
+        $folder = "assets/images/".$image_name;
+       move_uploaded_file($image, $folder);
+
            
-        $new_event = $event->createEvent($event_type_id, $start_date,$end_date,$name,$venue,$description);
+        $new_event = $event->createEvent($event_type_id, $start_date,$end_date,$name,$venue,$description,$image,$image_name);
+
+
 
       if($new_event){  
 
@@ -48,7 +57,7 @@
   </div>
   <div class="card-body">
     <div class="col-md-12">
-   <form method="post" action autocomplete="off">
+   <form method="post" action autocomplete="off" enctype="multipart/form-data">
       <div class="row">
         <div class="form-group col-md-12">
           <label for="inputfirst_name4">Event Type</label>
@@ -62,15 +71,24 @@
         </div>
       </div>
 
+      <div class="row">
+        
+        <div class=" col-md-12">
+          <label for="inputfirst_name4">Event Card</label>
+          <input type="file" name="fileToUpload" class="form-control" >
+        </div>
+
+      </div>
+
         <div class="row">
         
         <div class="form-group col-md-6">
-          <label for="inputfirst_name4">Event Name</label>
+          <label for="inputfirst_name4">Name/Title</label>
           <input type="text" name="name" class="form-control" id="inputEmail4">
         </div>
 
          <div class="form-group col-md-6">
-          <label for="inputEmail4">Venue</label>
+          <label for="inputEmail4">Location/Address</label>
           <textarea name="venue" class="form-control" placeholder="Enter event venue"></textarea>
         </div>
 
@@ -80,12 +98,17 @@
         
         <div class="form-group col-md-6">
           <label for="inputfirst_name4">Start Date</label>
-          <input type="text" name="start_date" class="form-control" id="inputEmail4" data-toggle="datepicker">
+          <!-- <input type="text" name="start_date" class="form-control" id="inputEmail4" data-toggle="datepicker"> -->
+
+  <input size="16" type="text" name="start_date" value="2020-06-15 14:45" class="form_datetime form-control">
+
         </div>
 
          <div class="form-group col-md-6">
           <label for="inputEmail4">End Date</label>
-          <input type="text" name="end_date"  class="form-control" placeholder="Enter event venue" data-toggle="datepicker">
+          <!-- <input type="text" name="end_date"  class="form-control" placeholder="Enter event venue" data-toggle="datepicker"> -->
+  <input size="16" type="text" name="end_date" value="2020-06-15 14:45" class="form_datetime form-control">
+
         </div>
 
       </div>
@@ -93,7 +116,7 @@
        <div class="row">
         <div class="form-group col-md-12">
           <label for="inputfirst_name4">Description</label>
-          <textarea name="description" class="form-control" placeholder="Enter event description"></textarea>
+          <textarea name="description" class="form-control" placeholder="About this event"></textarea>
         </div>
 
       </div>

@@ -1,6 +1,5 @@
 
 <?php 
-   include ('includes/header.php');
 
     include_once('dbFunction.php');  
        
@@ -29,15 +28,25 @@
             echo "<script>alert('Password Not Match')</script>";  
           
         }  
-    }  
+    }
+   include ('includes/header.php');
 ?>
-    <div class="container">  
-            <header>  
-                <h1>Registration Form  </h1>  
-            </header> 
-    
+<style type="text/css">
+  #auth_form{
+  background: #fff;
+  padding: 4em 4em 2em;
+  max-width: 600px;
+  margin: 50px auto 0;
+  box-shadow: 0 0 0.1em #222;
+  border-radius: 2px;
+  margin-top: 150px;
+}
+</style>
 
-<form method="post" action="" class="all_forms">
+
+    <div class="container">  
+
+<form method="post" action="" class="all_forms" id="auth_form">
   <div class="row">
     <div class="form-group col-md-6">
       <label for="inputfirst_name4">First Name</label>
@@ -74,7 +83,7 @@
   <button type="submit" name="register" class="btn btn-primary">REGISTER</button>
 <p class="change_link">    
     Already a member ?  
-    <a href="#tologin" class="to_register"> Go and log in </a>  
+    <a href="#tologin" class="register"> Go and log in </a>  
 </p>  
 </form>
 

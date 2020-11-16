@@ -39,7 +39,7 @@ include ('includes/admin_header.php');
 
                         if($result->num_rows >= 1){
 
-                          echo "<a class='text-info' href='update_event_type.php?id=". $data['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fas fa-edit'></i></a>";
+                          echo "<a class='text-info' href='update_event.php?id=". $data['id'] ."' title='Update Record' data-toggle='tooltip'><i class='fas fa-edit'></i></a>";
                           echo "&nbsp;&nbsp;&nbsp;&nbsp;";
                           echo "<a class='text-danger' href='list_events.php?destrol=". $data['id'] ."' title='Delete Record' data-toggle='tooltip'><i class='fas fa-trash'></i></a>";
 
@@ -84,6 +84,7 @@ include ('includes/admin_header.php');
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
                     ?>
+                    <img src="<?php echo $data['photo']; ?>">
                 </div>
         
 </div>

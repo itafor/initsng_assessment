@@ -34,9 +34,6 @@
         }  
            echo "Error: " . $sql . "<br>" . $conn->error;  
     }
-
-
-
     include ('includes/admin_header.php');
 ?>
     <div class="container">  

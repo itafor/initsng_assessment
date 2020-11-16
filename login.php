@@ -1,6 +1,5 @@
 
 <?php 
-   include ('includes/header.php');
 
     include_once('dbFunction.php');  
        
@@ -21,11 +20,10 @@
     }  
   
 ?>
+<?php
+   include ('includes/header.php');
+?>
       <div class="container">  
-            <header>  
-                <h1>Login Form  </h1>  
-            </header> 
-    
             <section>               
                 <div id="container_demo" >  
                      
@@ -33,7 +31,7 @@
                     <a class="hiddenanchor" id="tologin"></a>  
                     <div id="wrapper">  
                         <div id="login" class="animate form">  
-                           <form name="login" method="post" action="">  
+                           <form name="login" method="post" action="" class="auth_form" style="margin-top: 150px;">  
                                 <h1>Log in</h1>   
                                 <p>   
                                     <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>  

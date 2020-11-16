@@ -82,5 +82,11 @@ $(function() {
 
 
 </script>
+<!-- DATETIME PICKER JS -->
+  <script type="text/javascript" src="datepicker/js/bootstrap-datetimepicker.js"></script>
+      <script type="text/javascript" src="datepicker/js/bootstrap-datetimepicker.min.js"></script>
+      <script type="text/javascript">
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+</script>  
 <!--  -->
 

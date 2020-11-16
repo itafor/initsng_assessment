@@ -67,7 +67,7 @@ include ('includes/admin_header.php');
   </div>
 </div>
 
-
+<img src="assets/images/plant2.jpg" alt="img"/>
 
  <?php
    include ('includes/admin_footer.php');
