@@ -40,7 +40,7 @@
                            <form name="login" method="post" action="">  
                                 <h1>Welcome </h1>   
                                 <p>   
-                                    <label for="emailid" class="uname"   > Your Name </label>  
+                                    <label for="emailid" class="uname"> </label>  
                                    <?=$_SESSION['firstName']?>  <?= $_SESSION['lastName']?>
                             <br>
                             <?php 

@@ -98,7 +98,7 @@
       </header>
       <!-- end header -->
 
-       <div class="container">
+       <div class="container" style="margin-top: 100px; margin-bottom: -100px;">
 <?php if (isset($_SESSION['success_message'])): ?>
  
     <?php 
@@ -117,7 +117,7 @@
  
     <?php 
     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>Success! </strong>' .$_SESSION['error_message'].'
+  <strong>Error! </strong>' .$_SESSION['error_message'].'
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

@@ -15,12 +15,13 @@
         $new_even_type = $eventType->createEventType($name,$description);  
               if($new_even_type){  
 
-         $_SESSION['message'] = "Event Type created successfully!"; 
+         $_SESSION['success_message'] = "Event Type created successfully!"; 
 
           $funObj->redirect('list_event_types.php');
 
               }else{  
-                  echo "<script>alert('Attempt to create event type failed')</script>";  
+         $_SESSION['error_message'] = "Attempt to create event type failed!"; 
+
               }  
            
        

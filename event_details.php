@@ -3,10 +3,22 @@
     include_once('models/Event.php');  
 
     $event = new Event();  
-    
+    $funObj = new dbFunction();  
+
+
     if(isset($_GET['id'])){  
-        
           $id = $_GET['id'];
+        
+    $assoc_event_type= $funObj->associatedEventTypes($id);
+    $associatedEventTypeids=array();
+    while($row = mysqli_fetch_array($assoc_event_type)){
+
+      $associatedEventTypeids[]= $funObj->fetchEventTypeValue($row['event_type_id'])['name']; 
+    }
+       
+
+
+
          $sql = "SELECT * FROM events WHERE id='$id'";
           $result = $conn->query($sql);
           if($result->num_rows ==1){
@@ -22,27 +34,36 @@
         $phone = $_POST['phone'];  
         $confirmPassword = $_POST['confirm_password'];
         $eventId = $_POST['eventId'];  
+
+          if (in_array(' Premium-only Webinar', $associatedEventTypeids)) {
+      $_SESSION['error_message'] = "This is a Premium-only event.!"."
+<a href='about_premium_event.php'>Click here for more details</a>
+      "; 
+   }else{
+       
+
+
         if($password == $confirmPassword){  
-            // $email = $funObj->isUserExist($emailid);  
-            // if(!$email){  
+            $email = $funObj->isUserExist($emailid);  
+            if(!$email){  
                 $register = $event->registerForEvent($emailid, $password,$first_name,$last_name,$phone,$eventId);  
                 if($register){  
-                    header('location:login.php');
+         $_SESSION['success_message'] = "You have successfully registered for this event!"; 
                 }else{  
-                    echo "<script>alert('Registration Not Successful')</script>";  
+         $_SESSION['error_message'] = "Event Registration Not Successful!"; 
                 }  
-            // } else {  
-            //     echo "<script>alert('Email Already Exist')</script>";  
-            // }  
+            } else {  
+         $_SESSION['error_message'] = "Email Already Exist!"; 
+            }  
         } else {  
-            echo "<script>alert('Password Not Match')</script>";  
-          
+         $_SESSION['error_message'] = "Password Not Match!"; 
+
         }  
     }
-
+}
   include ('includes/header.php'); 
 ?>
-      
+    
       <!-- plant -->
       <div id="plant" class="plants" style="margin-top: 20px;">
          <div class="container">
@@ -57,7 +78,6 @@
          </div>
          <div class="container">
             <div class="row">
-
                <div class="col-md-8">
                   <div class="card" style="width: 100%;">
   <img src="assets/images/plant1.jpg" class="card-img-top" alt="img" style="height: 400px;" />
