@@ -44,12 +44,7 @@
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
-          <li>
-            <a href="#">
-              <i class="now-ui-icons design_app"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
+         
         
           <li>
             <a href="list_event_types.php">
@@ -63,12 +58,7 @@
               <p>Events</p>
             </a>
           </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>Event Applications</p>
-            </a>
-          </li>
+        
           
          
         </ul>
