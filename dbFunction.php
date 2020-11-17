@@ -118,5 +118,26 @@ public function fetchEventTypeValue($eventTypeId)
       return $data;
 }
 
+public function eventApplication($eventId)
+{
+    $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE); 
+        $sql = "SELECT * FROM event_applications where event_id ='$eventId'";
+               $result = $conn->query($sql);
+
+      return $result;
+}
+
+public function eventApplicant($userId)
+{
+   $conn =new mysqli(DB_HOST,DB_USER,DB_PASSWORD,DB_DATABASE); 
+        $sql = "SELECT * FROM users where id ='$userId'";
+               $result = $conn->query($sql);
+
+          $data =   mysqli_fetch_array($result);
+
+      return $data;
+}
+
+
 }
 ?>

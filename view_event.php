@@ -124,11 +124,57 @@ include ('includes/admin_header.php');
                         } else{
                             echo "<p class='lead'><em>No records were found.</em></p>";
                         }
+                    ?>
+                </div>
+</div>
+  
+  <hr>
+<h4>Event Applicants</h4>
+    <div class="table-responsive">
+                <div class="col-md-12">
+                    <?php
+
+                $res = $funObj->eventApplication($data['id']);
+                    
+                        if($res->num_rows > 0){
+                            echo "<table class='table table-bordered table-striped' id='data_table'>";
+                                echo "<thead>";
+                                    echo "<tr>";
+                                        echo "<th>S/N</th>";
+                                        echo "<th>First Name</th>";
+                                        echo "<th>Last Name</th>";
+                                        echo "<th>Email</th>";
+                                        echo "<th>phone</th>";
+                                        echo "<th>Action</th>";
+                                    echo "</tr>";
+                                echo "</thead>";
+                                echo "<tbody>";
+                                $index = 1;
+                                while($row = mysqli_fetch_array($res)){
+                                    echo "<tr>";
+                                        echo "<td>" . $index . "</td>";
+                                        echo "<td>" . $funObj->eventApplicant($row['user_id'])['first_name']. "</td>";
+                                        echo "<td>" . $funObj->eventApplicant($row['user_id'])['last_name']. "</td>";
+                                        echo "<td>" . $funObj->eventApplicant($row['user_id'])['emailid']. "</td>";
+                                        echo "<td>" . $funObj->eventApplicant($row['user_id'])['phone']. "</td>";
+                                        echo "<td>";
+                                            echo "<a class='text-danger' href='#' title='Delete Record' data-toggle='tooltip'><i class='fas fa-trash'></i></a>";
+                                        echo "</td>";
+                                    echo "</tr>";
+                                    $index++;
+                                }
+                                echo "</tbody>";                            
+                            echo "</table>";
+                            mysqli_free_result($res);
+                        } else{
+                            echo "<p class='lead'><em>No records were found.</em></p>";
+                        }
                   $conn->close();
                     ?>
                 </div>
 </div>
   
+
 
 </div>
 </div>

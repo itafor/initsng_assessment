@@ -131,7 +131,7 @@
                      <br>
                      <p> <?php echo mb_strimwidth($row['description'], 0, 20, "...");; ?>
                      <br>
-                     <small style="color: gray;"> <?php echo $row['venue'] ?></small>
+                     <small style="color: gray;"> <?php echo  mb_strimwidth($row['venue'], 0, 20, "..."); ?></small>
                         
                      </p>
                   </div>
